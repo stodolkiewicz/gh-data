@@ -3,12 +3,8 @@ on:
   push:
     branches:
       - main
-env:
-  MONGO_DB: gha-demo
 jobs:
   test:
-    env:
-      MONGO_DB_CLUSTER_ADDRESS: "some-address"
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -24,8 +20,6 @@ jobs:
         run: npm run lint
       - name: Test code
         run: npm run test
-      - name: print env variable defined in workflow
-        run: echo "env variable $MONGO_DB_CLUSTER_ADDRESS"
   build:
     needs: test
     runs-on: ubuntu-latest
